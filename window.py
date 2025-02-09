@@ -1,4 +1,5 @@
 from tkinter import Tk, BOTH, Canvas
+from objects import Point, Line
 
 class Window():
     def __init__(self, width, height):
@@ -22,4 +23,6 @@ class Window():
     def close(self):
         self.isRunning = False
     
+    def draw_line(self, line, color="black", width=2):
+        line.draw(self.canvas, color, width)
         
