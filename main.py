@@ -1,28 +1,17 @@
-from window import Window
-from objects import Point, Line
-from cell import Cell
+from graphics import Window
+from maze import Maze
 
 def main():
-    win = Window(800,600)
+    num_rows = 12
+    num_cols = 16
+    margin = 50
+    screen_x = 800
+    screen_y = 600
+    cell_size_x = (screen_x - 2 * margin) / num_cols
+    cell_size_y = (screen_y - 2 * margin) / num_rows
+    win = Window(screen_x, screen_y)
 
-    # line1 = Line(Point(50, 50), Point(100,100))
-    # line2 = Line(Point(300, 100), Point(700, 500))
-    # line3 = Line(Point(100, 500), Point(600, 50))
-
-    # win.draw_line(line1, color="black")
-    # win.draw_line(line2, color="red")
-    # win.draw_line(line3, color="blue")
-
-    cell1 = Cell(50, 50, 100, 100, win)
-    cell2 = Cell(100, 50, 150, 100, win)
-    cell3 = Cell(100, 100, 150, 150, win)
-    
-    cell1.draw()
-    cell2.draw()
-    cell3.draw()
-
-    cell1.draw_move(cell2)
-    cell2.draw_move(cell3)
+    maze = Maze(margin, margin, num_rows, num_cols, cell_size_x, cell_size_y, win)
 
     win.wait_for_close()
 
