@@ -1,5 +1,6 @@
 from graphics import Window
 from maze import Maze
+import sys
 
 def main():
     num_rows = 12
@@ -11,8 +12,15 @@ def main():
     cell_size_y = (screen_y - 2 * margin) / num_rows
     win = Window(screen_x, screen_y)
 
-    maze = Maze(margin, margin, num_rows, num_cols, cell_size_x, cell_size_y, win)
-
+    sys.setrecursionlimit(10000)  # Set a higher recursion limit to handle larger mazes
+    print("Generating maze...")
+    maze = Maze(margin, margin, num_rows, num_cols, cell_size_x, cell_size_y, win, 10)
+    print("Maze generated. Attempting to solve...")
+    is_solvable = maze.solve()
+    if not is_solvable:
+        print("No solution found.")
+    else:
+        print("Maze Solved!")
     win.wait_for_close()
 
 if __name__ == "__main__":
